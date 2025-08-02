@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "biome:write": "bunx biome check --write",
+    "biome:ci": "bunx biome ci"
   },
   "dependencies": {
     "react": "^19.1.0",
