@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "./lib/utils";
 import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
 
 const items = [
   {
@@ -53,6 +54,11 @@ export function AppSidebar() {
                 <DialogHeader>
                   <DialogTitle>Add a task</DialogTitle>
                 </DialogHeader>
+
+                <div className="grid gap-3">
+                  <Input id="name-1" name="name" placeholder="Name" />
+                </div>
+
                 <DialogFooter>
                   <DialogClose asChild>
                     <Button variant="outline">Cancel</Button>
