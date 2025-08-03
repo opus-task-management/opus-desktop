@@ -23,6 +23,7 @@ import {
 import { cn } from "./lib/utils";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
+import { useState } from "react";
 
 const items = [
   {
@@ -37,7 +38,17 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  addTask: (task: string) => void;
+}
+
+export function AppSidebar(props: AppSidebarProps) {
+  const [name, setName] = useState("");
+
+  const addTask = () => props.addTask(name);
+
+  console.log(name);
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -56,14 +67,23 @@ export function AppSidebar() {
                 </DialogHeader>
 
                 <div className="grid gap-3">
-                  <Input id="name-1" name="name" placeholder="Name" />
+                  <Input
+                    id="name-1"
+                    name="name"
+                    placeholder="Name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
 
                 <DialogFooter>
                   <DialogClose asChild>
                     <Button variant="outline">Cancel</Button>
                   </DialogClose>
-                  <Button type="submit">Add</Button>
+                  <DialogClose>
+                    <Button type="submit" onClick={addTask}>
+                      Add
+                    </Button>
+                  </DialogClose>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
