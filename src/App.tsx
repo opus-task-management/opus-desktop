@@ -13,6 +13,10 @@ function App() {
     setTasks([...tasks, task]);
   };
 
+  const removeTask = (task: string) => {
+    setTasks(tasks.filter((t) => t !== task));
+  };
+
   return (
     <SidebarProvider>
       <AppSidebar addTask={addTask} />
@@ -22,7 +26,14 @@ function App() {
           {tasks.map((task, idx) => (
             <>
               <div className="flex gap-3 items-start gap-3 w-full">
-                <Checkbox id={`task-${idx}`} />
+                <Checkbox
+                  id={task}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      removeTask(task);
+                    }
+                  }}
+                />
                 <Label htmlFor={`task-${idx}`}>{task}</Label>
               </div>
             </>
