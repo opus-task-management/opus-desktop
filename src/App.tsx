@@ -27,7 +27,7 @@ function App() {
             <>
               <div className="flex gap-3 items-start gap-3 w-full">
                 <Checkbox
-                  id={task}
+                  id={`task-${idx}`}
                   onCheckedChange={(checked) => {
                     if (checked) {
                       removeTask(task);
