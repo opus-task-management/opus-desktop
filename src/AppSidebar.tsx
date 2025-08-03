@@ -11,7 +11,17 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { cn } from "./lib/utils";
+import { Button } from "./components/ui/button";
 
 const items = [
   {
@@ -33,10 +43,24 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Opus</SidebarGroupLabel>
           <SidebarGroupAction>
-            <Settings className={cn("mr-2")} />{" "}
-            <span className="sr-only">Open Settings</span>
-            <Plus className={cn("mr-5")} />{" "}
-            <span className="sr-only">Add Task</span>
+            <Dialog>
+              <Settings className={cn("mr-2")} />{" "}
+              <span className="sr-only">Open Settings</span>
+              <DialogTrigger asChild>
+                <Plus className={cn("mr-5")} />
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add a task</DialogTitle>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <Button type="submit">Add</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </SidebarGroupAction>
           <SidebarGroupContent>
             <SidebarMenu>
