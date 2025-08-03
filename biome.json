@@ -16,7 +16,8 @@
       "!**/node_modules",
       "!**/src-tauri/gen",
       "!**/src-tauri/target",
-      "!**/.vscode/"
+      "!**/.vscode/",
+      "!**/src/components/ui/sidebar.tsx"
     ]
   },
   "formatter": {
