@@ -1,10 +1,10 @@
 import "./App.css";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
-import { AppSidebar } from "./AppSidebar";
-import { cn } from "./lib/utils";
 import { useState } from "react";
+import { AppSidebar } from "./AppSidebar";
 import { Checkbox } from "./components/ui/checkbox";
 import { Label } from "./components/ui/label";
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
+import { cn } from "./lib/utils";
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);

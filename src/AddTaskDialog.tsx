@@ -1,14 +1,14 @@
-import { Settings, Plus } from "lucide-react";
+import { Plus, Settings } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./components/ui/button";
 import {
-  DialogHeader,
-  DialogFooter,
-  DialogTrigger,
   Dialog,
   DialogClose,
   DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "./components/ui/dialog";
 import { Input } from "./components/ui/input";
 import { cn } from "./lib/utils";
