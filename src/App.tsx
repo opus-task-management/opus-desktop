@@ -1,8 +1,47 @@
 import "./App.css";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { AppSidebar } from "./AppSidebar";
+import { Checkbox } from "./components/ui/checkbox";
+import { Label } from "./components/ui/label";
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
+import { cn } from "./lib/utils";
 
 function App() {
-  return <Button variant="default">Button</Button>;
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  const addTask = (task: string) => {
+    setTasks([...tasks, task]);
+  };
+
+  const removeTask = (task: string) => {
+    setTasks(tasks.filter((t) => t !== task));
+  };
+
+  return (
+    <SidebarProvider>
+      <AppSidebar addTask={addTask} />
+      <main className="w-full">
+        <SidebarTrigger className={cn("mt-2.5 ml-1")} />
+        <div className="flex flex-col gap-6 items-center mx-auto max-w-5xl h-[80%] mt-10 rounded-md">
+          {tasks.map((task, idx) => (
+            <>
+              <div className="flex gap-3 items-start gap-3 w-full">
+                <Checkbox
+                  id={`task-${idx}`}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      removeTask(task);
+                    }
+                  }}
+                />
+                <Label htmlFor={`task-${idx}`}>{task}</Label>
+              </div>
+            </>
+          ))}
+        </div>
+      </main>
+    </SidebarProvider>
+  );
 }
 
 export default App;
