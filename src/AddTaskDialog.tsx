@@ -50,7 +50,7 @@ export function AddTaskDialog(props: AddTaskDialogProps) {
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <DialogClose>
+          <DialogClose asChild>
             <Button type="submit" onClick={addTask}>
               Add
             </Button>
