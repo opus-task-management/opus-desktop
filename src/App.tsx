@@ -22,7 +22,7 @@ function App() {
       <AppSidebar addTask={addTask} />
       <main className="w-full">
         <SidebarTrigger className={cn("mt-2.5 ml-1")} />
-        <div className="flex flex-col gap-6 items-center mx-auto max-w-5xl h-[80%] mt-10 rounded-md">
+        <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10 rounded-md">
           {tasks.map((task, idx) => (
             <>
               <div className="flex gap-3 items-start gap-3 w-full">
