@@ -26,9 +26,16 @@ function App() {
     setTasks(tasks.filter((t) => t.id !== task.id));
   };
 
+  const searchForTask = (searchTerm: string): Task[] => {
+    if (searchTerm.length === 0) {
+      return tasks;
+    }
+    return tasks.filter(task => task.content.includes(searchTerm));
+  };
+
   return (
     <SidebarProvider>
-      <AppSidebar addTask={addTask} />
+      <AppSidebar addTask={addTask} searchForTasks={searchForTask} />
       <main className="w-full">
         <SidebarTrigger className={cn("mt-2.5 ml-1")} />
         <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10 rounded-md">
