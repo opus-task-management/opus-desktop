@@ -59,6 +59,7 @@ export function SearchTaskDialog(props: SearchTaskDialogProps) {
                     </div>
                 ))}
             </div>
+            <p className="mt-2 text-center text-sm text-muted-foreground">Found {tasks.length} tasks</p>
         </div>
       </DialogContent>
     </Dialog>
