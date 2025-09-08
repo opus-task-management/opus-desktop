@@ -12,22 +12,27 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { AddTaskDialog } from "./AddTaskDialog";
+import { SearchTaskDialog } from "./SearchTaskDialog";
+import { Task } from "./models/task";
 
 const items = [
   {
     title: "Search",
     url: "#",
     icon: Search,
+    usesDialog: true,
   },
   {
     title: "Inbox",
     url: "#",
     icon: Inbox,
+    usesDialog: false,
   },
 ];
 
 interface AppSidebarProps {
   addTask: (task: string) => void;
+  searchForTasks: (searchTerm: string) => Task[];
 }
 
 export function AppSidebar(props: AppSidebarProps) {
@@ -43,12 +48,16 @@ export function AppSidebar(props: AppSidebarProps) {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                  {item.usesDialog ? (
+                    <SearchTaskDialog searchForTask={props.searchForTasks}/>
+                  ) : (
+                    <SidebarMenuButton asChild>
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
