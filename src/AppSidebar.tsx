@@ -12,8 +12,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { AddTaskDialog } from "./AddTaskDialog";
+import type { Task } from "./models/task";
 import { SearchTaskDialog } from "./SearchTaskDialog";
-import { Task } from "./models/task";
 
 const items = [
   {
@@ -49,7 +49,7 @@ export function AppSidebar(props: AppSidebarProps) {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.usesDialog ? (
-                    <SearchTaskDialog searchForTask={props.searchForTasks}/>
+                    <SearchTaskDialog searchForTask={props.searchForTasks} />
                   ) : (
                     <SidebarMenuButton asChild>
                       <a href={item.url}>
