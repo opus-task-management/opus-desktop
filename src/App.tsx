@@ -38,7 +38,7 @@ function App() {
       <AppSidebar addTask={addTask} searchForTasks={searchForTask} />
       <main className="w-full">
         <SidebarTrigger className={cn("mt-2.5 ml-1")} />
-        <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10 rounded-md">
+        <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10">
           {tasks.map((task) => (
             <div
               key={`task-container-${task.id}`}
