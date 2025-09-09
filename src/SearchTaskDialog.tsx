@@ -16,6 +16,7 @@ interface SearchTaskDialogProps {
 }
 
 export function SearchTaskDialog(props: SearchTaskDialogProps) {
+  const url = "#";
   const [tasks, setTasks] = useState<Task[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -27,7 +28,7 @@ export function SearchTaskDialog(props: SearchTaskDialogProps) {
     <Dialog>
       <DialogTrigger asChild>
         <SidebarMenuButton asChild>
-          <a href={"#"}>
+          <a href={url}>
             <Search />
             <span>Search</span>
           </a>
