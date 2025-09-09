@@ -30,7 +30,7 @@ function App() {
     if (searchTerm.length === 0) {
       return tasks;
     }
-    return tasks.filter(task => task.content.includes(searchTerm));
+    return tasks.filter((task) => task.content.includes(searchTerm));
   };
 
   return (
