@@ -42,7 +42,7 @@ function App() {
           {tasks.map((task) => (
             <div
               key={`task-container-${task.id}`}
-              className="flex gap-3 items-start gap-3 w-full"
+              className="flex gap-3 items-start gap-3 w-full border-b py-2"
             >
               <Checkbox
                 id={`task-${task.id}`}
