@@ -38,11 +38,11 @@ function App() {
       <AppSidebar addTask={addTask} searchForTasks={searchForTask} />
       <main className="w-full">
         <SidebarTrigger className={cn("mt-2.5 ml-1")} />
-        <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10 rounded-md">
+        <div className="flex flex-col gap-6 items-center mx-auto max-w-md h-[80%] mt-10 overflow-y-auto pr-2">
           {tasks.map((task) => (
             <div
               key={`task-container-${task.id}`}
-              className="flex gap-3 items-start gap-3 w-full"
+              className="flex gap-3 items-start gap-3 w-full border-b py-2"
             >
               <Checkbox
                 id={`task-${task.id}`}
