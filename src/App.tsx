@@ -6,6 +6,8 @@ import { Label } from "./components/ui/label";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { cn } from "./lib/utils";
 import type { Task } from "./models/task";
+import { Pencil } from "lucide-react";
+import { Button } from "./components/ui/button";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -42,7 +44,7 @@ function App() {
           {tasks.map((task) => (
             <div
               key={`task-container-${task.id}`}
-              className="flex gap-3 items-start gap-3 w-full border-b py-2"
+              className="group flex gap-3 items-start gap-3 w-full border-b py-2 relative"
             >
               <Checkbox
                 id={`task-${task.id}`}
@@ -53,6 +55,10 @@ function App() {
                 }}
               />
               <Label htmlFor={`task-${task.id}`}>{task.content}</Label>
+              <Pencil
+                className="absolute right-2 bottom-1 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer w-4 h-4"
+                onClick={() => alert("edit")}
+              />
             </div>
           ))}
         </div>
