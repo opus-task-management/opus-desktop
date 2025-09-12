@@ -6,6 +6,7 @@ import { Label } from "./components/ui/label";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { cn } from "./lib/utils";
 import type { Task } from "./models/task";
+import { EditTaskDialog } from "./EditTaskDialog";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -42,7 +43,7 @@ function App() {
           {tasks.map((task) => (
             <div
               key={`task-container-${task.id}`}
-              className="flex gap-3 items-start gap-3 w-full border-b py-2"
+              className="group flex gap-3 items-start gap-3 w-full border-b py-2 relative"
             >
               <Checkbox
                 id={`task-${task.id}`}
@@ -53,6 +54,16 @@ function App() {
                 }}
               />
               <Label htmlFor={`task-${task.id}`}>{task.content}</Label>
+              <EditTaskDialog
+                current={task}
+                editTask={(newContent, id) =>
+                  setTasks(
+                    tasks.map((t) =>
+                      t.id === id ? { ...t, content: newContent } : t,
+                    ),
+                  )
+                }
+              />
             </div>
           ))}
         </div>
