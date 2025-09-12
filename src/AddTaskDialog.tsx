@@ -42,6 +42,7 @@ export function AddTaskDialog(props: AddTaskDialogProps) {
             id="name-1"
             name="name"
             placeholder="Name"
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -51,7 +52,11 @@ export function AddTaskDialog(props: AddTaskDialogProps) {
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type="submit" onClick={addTask}>
+            <Button
+              type="submit"
+              onClick={addTask}
+              disabled={name.trim().length === 0}
+            >
               Add
             </Button>
           </DialogClose>
