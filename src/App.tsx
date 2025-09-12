@@ -6,8 +6,7 @@ import { Label } from "./components/ui/label";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { cn } from "./lib/utils";
 import type { Task } from "./models/task";
-import { Pencil } from "lucide-react";
-import { Button } from "./components/ui/button";
+import { EditTaskDialog } from "./EditTaskDialog";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -55,9 +54,15 @@ function App() {
                 }}
               />
               <Label htmlFor={`task-${task.id}`}>{task.content}</Label>
-              <Pencil
-                className="absolute right-2 bottom-1 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer w-4 h-4"
-                onClick={() => alert("edit")}
+              <EditTaskDialog
+                current={task}
+                editTask={(newContent, id) =>
+                  setTasks(
+                    tasks.map((t) =>
+                      t.id === id ? { ...t, content: newContent } : t,
+                    ),
+                  )
+                }
               />
             </div>
           ))}
