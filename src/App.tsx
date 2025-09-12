@@ -11,6 +11,7 @@ import { EditTaskDialog } from "./EditTaskDialog";
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [id, setId] = useState<number>(0);
+  const [checkedTasksIds, setCheckedTasksIds] = useState<number[]>([]);
 
   const addTask = (task: string) => {
     setTasks([
@@ -48,12 +49,30 @@ function App() {
               <Checkbox
                 id={`task-${task.id}`}
                 onCheckedChange={(checked) => {
-                  if (checked) {
-                    removeTask(task);
+                  if (!checked) {
+                    return;
                   }
+                  setCheckedTasksIds([...checkedTasksIds, task.id]);
+
+                  setTimeout(() => {
+                    removeTask(task);
+                    setCheckedTasksIds((prev) =>
+                      prev.filter((id) => id !== task.id),
+                    );
+                  }, 300);
                 }}
               />
-              <Label htmlFor={`task-${task.id}`}>{task.content}</Label>
+              <Label
+                htmlFor={`task-${task.id}`}
+                className={cn(
+                  "transition-all duration-500",
+                  checkedTasksIds.includes(task.id)
+                    ? "line-through opacity-50"
+                    : "opacity-100",
+                )}
+              >
+                {task.content}
+              </Label>
               <EditTaskDialog
                 current={task}
                 editTask={(newContent, id) =>
