@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import { cn } from "./lib/utils";
 import type { Task } from "./models/task";
 import { EditTaskDialog } from "./EditTaskDialog";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -35,6 +36,18 @@ function App() {
     return tasks.filter((task) => task.content.includes(searchTerm));
   };
 
+  const onTaskRemove = (checked: CheckedState, task: Task) => {
+    if (!checked) {
+      return;
+    }
+    setCheckedTasksIds([...checkedTasksIds, task.id]);
+
+    setTimeout(() => {
+      removeTask(task);
+      setCheckedTasksIds((prev) => prev.filter((id) => id !== task.id));
+    }, 300);
+  };
+
   return (
     <SidebarProvider>
       <AppSidebar addTask={addTask} searchForTasks={searchForTask} />
@@ -48,19 +61,7 @@ function App() {
             >
               <Checkbox
                 id={`task-${task.id}`}
-                onCheckedChange={(checked) => {
-                  if (!checked) {
-                    return;
-                  }
-                  setCheckedTasksIds([...checkedTasksIds, task.id]);
-
-                  setTimeout(() => {
-                    removeTask(task);
-                    setCheckedTasksIds((prev) =>
-                      prev.filter((id) => id !== task.id),
-                    );
-                  }, 300);
-                }}
+                onCheckedChange={(checked) => onTaskRemove(checked, task)}
               />
               <Label
                 htmlFor={`task-${task.id}`}
