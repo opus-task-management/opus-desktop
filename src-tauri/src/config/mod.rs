@@ -38,7 +38,7 @@ impl OpusConfig {
                 config
             }
             None => {
-                let opus_config = OpusConfig::create_default();
+                let opus_config = OpusConfig::default();
                 let json_data = serde_json::to_string(&opus_config).unwrap();
                 let mut file = File::create(candidates[2]).expect("Cannot create file");
                 file.write_all(json_data.as_bytes())
@@ -47,8 +47,10 @@ impl OpusConfig {
             }
         }
     }
+}
 
-    fn create_default() -> Self {
+impl Default for OpusConfig {
+    fn default() -> Self {
         Self {
             storage: StorageConfig::File(FileConfig {
                 folder: "./opus".to_string(),
